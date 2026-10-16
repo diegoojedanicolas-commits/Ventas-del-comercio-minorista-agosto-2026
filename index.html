@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ventas del comercio minorista, enero–agosto 2026</title>
+<style>
+:root{--bg:#fff;--ink:#111;--muted:#6b6b6b;--line:#ececec;--red:#d0021b;--pos:#e58a93;color-scheme:light;box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;line-height:1.5}
+.wrap{max-width:760px;margin:0 auto;padding:34px 22px 48px}
+button{font:inherit;color:inherit;cursor:pointer}
+h1{border-top:4px solid var(--red);padding-top:22px;font:700 32px/1.12 Georgia,"Times New Roman",serif;margin:0 0 8px}
+.sub{color:var(--muted);margin:0 0 26px;font-size:15px;max-width:60ch}
+.big{font:400 52px/1 Georgia,serif;margin:0 0 4px}
+.bl{color:var(--muted);font-size:14px;margin:0 0 24px}
+.card{border-left:4px solid var(--red);background:#f8f8f8;padding:12px 16px;margin-bottom:22px;min-height:112px}
+.card .n{font-size:14px;font-weight:700;margin-bottom:6px}
+.card .m{display:flex;gap:26px;margin-bottom:4px}
+.card .m b{display:block;font:400 26px/1.1 Georgia,serif}
+.card .m small{font-size:12px;color:var(--muted)}
+.card span{font-size:13px;color:var(--muted)}
+.ctl{display:flex;flex-wrap:wrap;gap:8px 22px;margin-bottom:18px}
+.grp{display:flex;gap:6px;align-items:center}
+.grp small{font-size:12px;color:var(--muted);margin-right:2px}
+.pill{background:#fff;border:1px solid var(--ink);border-radius:999px;padding:4px 13px;font-size:13px}
+.pill[aria-pressed=true]{background:var(--ink);color:#fff}
+.r{display:grid;grid-template-columns:minmax(110px,36%) 1fr;gap:12px;align-items:center;width:100%;background:none;border:0;padding:5px 4px;text-align:left}
+.r:hover,.r:focus-visible,.r.on{background:#f6f6f6;outline:none}
+.lb{font-size:13px;line-height:1.25}
+.r.on .lb{font-weight:700}
+.tr{position:relative;display:block;height:16px}
+.z{position:absolute;top:-4px;bottom:-4px;width:1px;background:#bbb}
+.bar{position:absolute;top:0;height:100%;background:var(--pos);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .6s cubic-bezier(.2,.7,.2,1),background .15s}
+.bar.q{background:var(--ink);transform-origin:right}
+.go .bar{transform:scaleX(1)}
+.r.on .bar{background:var(--red)}
+.v{position:absolute;top:-1px;font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.dot{fill:var(--pos);stroke:#fff;stroke-width:1.5;cursor:pointer;opacity:.9;outline:none}
+.dot.on{fill:var(--red)}
+.ax{stroke:#e2e2e2}.tk{font-size:11px;fill:var(--muted)}.at{font-size:12px;fill:var(--muted)}
+.note{font-size:14px;color:var(--muted);margin:22px 0 0;max-width:60ch}
+.note b{color:var(--ink);font-weight:600}
+.src{margin-top:34px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.bar{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Ventas del comercio minorista</h1>
+  <p class="sub">Variación y contribución año corrido de las ventas reales por línea de mercancía. Enero–agosto de 2026 frente a enero–agosto de 2025. Total nacional.</p>
+  <p class="big">10,9 %</p>
+  <p class="bl">crecimiento de las ventas reales del comercio minorista y vehículos</p>
+  <div class="card" id="card" role="status"></div>
+  <div id="app"></div>
+  <p class="note"><b>Vehículos de uso de los hogares</b> aportaron 3,6 de los 10,9 puntos del total. En cambio, <b>televisores</b> crecieron 44,3 % pero aportaron 1,0 punto, y <b>libros y papelería</b> subieron 35,4 % con apenas 0,2.</p>
+  <div class="src">Fuente: DANE – EMC. Cifras provisionales. Las notas con asterisco (*, **, ***) están en la publicación original.</div>
+</div>
+<script>
+(function(){
+var D=[
+["Vehículos automotores y motocicletas principalmente de uso de los hogares**","Vehículos de uso de los hogares**",37.0,3.6],
+["Otros vehículos automotores y motocicletas***","Otros vehículos y motocicletas***",26.7,2.2],
+["Equipo de informática y telecomunicaciones para uso personal o doméstico","Informática y telecomunicaciones",16.9,1.1],
+["Equipo y aparatos de sonido y video (televisores)","Sonido y video (televisores)",44.3,1.0],
+["Electrodomésticos, muebles para el hogar","Electrodomésticos y muebles",17.2,0.7],
+["Productos de aseo personal, cosméticos y perfumería","Aseo personal y cosméticos",8.0,0.3],
+["Alimentos (víveres en general)","Alimentos (víveres)",1.6,0.3],
+["Repuestos, partes, accesorios y lubricantes para vehículos principalmente de consumo de los hogares","Repuestos y lubricantes",3.8,0.3],
+["Productos para el aseo del hogar","Aseo del hogar",9.5,0.2],
+["Otras mercancías para uso personal o doméstico, no especificadas anteriormente*","Otras mercancías*",7.4,0.2],
+["Artículos de ferretería, vidrios y pinturas","Ferretería, vidrios y pinturas",7.1,0.2],
+["Artículos y utensilios de uso doméstico","Utensilios de uso doméstico",14.9,0.2],
+["Libros, papelería, periódicos, revistas y útiles escolares","Libros, papelería y útiles",35.4,0.2],
+["Bebidas no alcohólicas","Bebidas no alcohólicas",15.0,0.2],
+["Bebidas alcohólicas, cigarros, cigarrillos y productos del tabaco","Bebidas alcohólicas y tabaco",4.2,0.1],
+["Prendas de vestir y textiles","Prendas de vestir y textiles",1.6,0.1],
+["Productos farmacéuticos y medicinales","Farmacéuticos y medicinales",1.9,0.0],
+["Calzado, artículos de cuero y sucedáneos del cuero","Calzado y artículos de cuero",1.8,0.0],
+["Combustibles para vehículos automotores","Combustibles",-0.7,-0.1]
+].map(x=>({n:x[0],s:x[1],v:x[2],c:x[3]}));
+var S={view:"rk",met:"v",sel:0};
+var f=n=>n.toFixed(1).replace(".",","),app=document.getElementById("app");
+var rank=(k,i)=>1+D.filter(d=>d[k]>D[i][k]).length;
+var pills=(k,l)=>l.map(p=>'<button class="pill" data-k="'+k+'" data-v="'+p[0]+'" aria-pressed="'+(S[k]===p[0])+'">'+p[1]+"</button>").join("");
+function card(i){
+  var d=D[i],t=d.c<0?"Restó "+f(-d.c)+" pp al total.":d.c===0?"No aportó puntos al total (menos de 0,05 pp).":"Aportó "+f(d.c)+" de los 10,9 pp del total.";
+  document.getElementById("card").innerHTML='<div class="n">'+d.n+'</div><div class="m"><div><b>'+f(d.v)+' %</b><small>Variación</small></div><div><b>'+f(d.c)+' pp</b><small>Contribución</small></div></div><span>'+t+" Puesto "+rank("v",i)+" de "+D.length+" en variación y "+rank("c",i)+" en contribución.</span>";
+}
+function rk(){
+  var K=S.met,MIN=K==="v"?-3:-.3,MAX=K==="v"?50:4.2,P=x=>(x-MIN)/(MAX-MIN)*100;
+  var idx=D.map((_,i)=>i).sort((a,b)=>D[b][K]-D[a][K]);
+  return '<div id="plot">'+idx.map(i=>{
+    var d=D[i],v=d[K],neg=v<0;
+    return '<button class="r'+(i===S.sel?" on":"")+'" data-i="'+i+'"><span class="lb">'+d.s+'</span><span class="tr"><i class="z" style="left:'+P(0)+'%"></i><span class="bar'+(neg?" q":"")+'" style="left:'+P(Math.min(0,v))+"%;width:"+Math.abs(v)/(MAX-MIN)*100+'%"></span><span class="v" style="left:'+(P(Math.max(0,v))+1)+'%">'+f(v)+"</span></span></button>";
+  }).join("")+"</div>";
+}
+function sc(){
+  var X0=56,X1=620,Y0=16,Y1=300,XN=-5,XM=50,YN=-.5,YM=4;
+  var xs=v=>X0+(v-XN)/(XM-XN)*(X1-X0),ys=c=>Y1-(c-YN)/(YM-YN)*(Y1-Y0);
+  var h='<svg viewBox="0 0 640 346" role="group" aria-label="Variación frente a contribución por línea de mercancía">';
+  [0,1,2,3,4].forEach(t=>{h+='<line class="ax" x1="'+X0+'" x2="'+X1+'" y1="'+ys(t)+'" y2="'+ys(t)+'"/><text class="tk" x="'+(X0-8)+'" y="'+(ys(t)+4)+'" text-anchor="end">'+t+"</text>"});
+  [0,10,20,30,40,50].forEach(t=>{h+='<text class="tk" x="'+xs(t)+'" y="'+(Y1+18)+'" text-anchor="middle">'+t+"</text>"});
+  h+='<line x1="'+xs(0)+'" x2="'+xs(0)+'" y1="'+Y0+'" y2="'+Y1+'" stroke="#bbb"/><text class="at" x="'+((X0+X1)/2)+'" y="340" text-anchor="middle">Variación (%)</text><text class="at" transform="translate(14 '+((Y0+Y1)/2)+') rotate(-90)" text-anchor="middle">Contribución (pp)</text>';
+  D.forEach((d,i)=>{if(i!==S.sel)h+='<circle class="dot" tabindex="0" data-i="'+i+'" cx="'+xs(d.v)+'" cy="'+ys(d.c)+'" r="6"/>'});
+  var s=D[S.sel],x=xs(s.v),y=ys(s.c),L=x>440;
+  h+='<circle class="dot on" tabindex="0" data-i="'+S.sel+'" cx="'+x+'" cy="'+y+'" r="8"/><text x="'+(L?x-13:x+13)+'" y="'+(y-10)+'" text-anchor="'+(L?"end":"start")+'" font-size="12" font-weight="700" fill="#111">'+s.s+"</text></svg>";
+  return h;
+}
+function render(){
+  var a=document.activeElement,fk=a&&a.dataset&&a.dataset.k?a.dataset.k+a.dataset.v:null;
+  app.innerHTML='<div class="ctl"><div class="grp">'+pills("view",[["rk","Ranking"],["sc","Dispersión"]])+"</div>"+(S.view==="rk"?'<div class="grp"><small>Ordenar por</small>'+pills("met",[["v","Variación"],["c","Contribución"]])+"</div>":"")+"</div>"+(S.view==="rk"?rk():sc());
+  card(S.sel);
+  var p=document.getElementById("plot");
+  if(p)requestAnimationFrame(()=>requestAnimationFrame(()=>p.classList.add("go")));
+  if(fk){var el=[].find.call(app.querySelectorAll("[data-k]"),e=>e.dataset.k+e.dataset.v===fk);if(el)el.focus()}
+}
+app.addEventListener("click",e=>{
+  var b=e.target.closest("[data-k]");
+  if(b){S[b.dataset.k]=b.dataset.v;render();return}
+  var t=e.target.closest("[data-i]");
+  if(t){S.sel=+t.dataset.i;render()}
+});
+function hov(e){var t=e.target.closest("[data-i]");if(t)card(+t.dataset.i)}
+app.addEventListener("mouseover",hov);app.addEventListener("focusin",hov);
+app.addEventListener("mouseleave",()=>card(S.sel));
+render();
+})();
+</script>
+</body>
+</html>
